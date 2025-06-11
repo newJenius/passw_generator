@@ -1,6 +1,15 @@
 
 
 
+const (
+	LowerLetters = "abcdefghijklmnopqrstuvwxyz"
+
+	UpperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+	Digits = "0123456789"
+
+	Symbols = "~!@#$%^&*()_+`-={}|[]\\:\"<>?,./"
+)
 
 Функция генерации принимает такие параметры:
 -длина в пароля в символаж
@@ -24,15 +33,39 @@ func Generate( length, numberDigits, numberSymbols int, allowUpper, allowRepeat 
 }
 
 type GeneratorInput struct{
-	LowerLetters string
-	UpperLetters string
-	Digits string
-	Symbols string
-	Reader io.Reader
+	LowerLetters string		// == 0
+	UpperLetters string		// == 0
+	Digits string			// == 0
+	Symbols string			// == 0
+	Reader io.Reader		// == 0
+}
+
+type Generator struct{
+	lowerLetters string
+	upperLetters string
+	digits   string
+	symbols  string 
+	reader   io.Reader 
 }
 
 func NewGenerator(i *GeneratorInput){
 	if i == nil {
 		i = new(GeneratorInput)
 	}
+
+	g := &Generator{
+		lowerLetters: i.LowerLetters,
+		upperLetters: i.UpperLetters,
+		digits:   i.Digits,
+		symbols:  i.Symbols,
+		reader:   i.Reader,
+	}
+
+	if lowerLetters == ""{
+		g.LowerLetters = LowerLetters
+	}
+
 }
+
+
+Зачем тут ридер?? к чему оно?
